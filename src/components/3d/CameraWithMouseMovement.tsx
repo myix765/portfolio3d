@@ -5,15 +5,9 @@ import * as THREE from 'three';
 /**
  * CameraWithMouseMovement — simulates sitting at a desk and looking around.
  *
- * Controls:
- *  - Click to lock pointer (Pointer Lock API)
- *  - Move mouse to look around
- *  - Escape to unlock
- *
  * Props:
  *  - horizontalLimit  radians: max yaw left/right   (default: Math.PI / 3  = 60°)
  *  - verticalLimit    radians: max pitch up/down     (default: Math.PI / 4  = 45°)
- *  - sensitivity      mouse sensitivity multiplier   (default: 0.002)
  *  - smoothing        lerp factor 0-1, 1 = instant   (default: 0.1)
  */
 const CameraWithMouseMovement = ({
@@ -23,21 +17,20 @@ const CameraWithMouseMovement = ({
 }) => {
   const { camera, gl } = useThree();
 
-  // Target euler angles (raw desired values)
+  // target euler angles (raw desired values)
   const target = useRef({ yaw: 0, pitch: 0 });
-  // Current smoothed angles
+  // current smoothed angles
   const current = useRef({ yaw: 0, pitch: 0 });
 
   useEffect(() => {
     const canvas = gl.domElement;
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Get mouse position as -1 to 1 within the canvas
+      // bound -1 to 1
       const rect = canvas.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
 
-      // Map directly to angle limits
       target.current.yaw = -x * horizontalLimit;
       target.current.pitch = -y * verticalLimit;
     };
@@ -47,7 +40,6 @@ const CameraWithMouseMovement = ({
   }, [gl, horizontalLimit, verticalLimit]);
 
   useFrame(() => {
-    // Smoothly interpolate current angles toward target
     current.current.yaw = THREE.MathUtils.lerp(
       current.current.yaw,
       target.current.yaw,
@@ -59,7 +51,7 @@ const CameraWithMouseMovement = ({
       smoothing,
     );
 
-    // Apply to camera using Euler order YXZ:
+    // Euler order YXZ:
     // Y first (yaw/horizontal), then X (pitch/vertical), no roll
     camera.rotation.order = 'YXZ';
     camera.rotation.y = current.current.yaw;
