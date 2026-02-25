@@ -21,9 +21,7 @@ export function Desk(props: ThreeElements['group']) {
       <mesh
         geometry={nodes.Adjustable_Desk.geometry}
         material={materials['Material.001']}
-        position={[-0.002, 0.459, 0.109]}
       />
-      <axesHelper args={[0.5]} position={[0, 0.5, 0]} />
     </group>
   );
 }
