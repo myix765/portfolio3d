@@ -12,7 +12,7 @@ type GLTFResult = GLTF & {
   materials: { ['IMac-Body.001']: THREE.MeshStandardMaterial };
 };
 
-export function AppleKeyboard(props: ThreeElements['group']) {
+export function AppleKeyboardModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
     '/models/apple_keyboard.glb',
   ) as unknown as GLTFResult;

@@ -20,7 +20,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function OfficeChair(props: ThreeElements['group']) {
+export function OfficeChairModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
     '/models/office_chair-transformed.glb',
   ) as unknown as GLTFResult;

@@ -12,7 +12,7 @@ type GLTFResult = GLTF & {
   materials: { PaletteMaterial001: THREE.MeshStandardMaterial };
 };
 
-export function IMacBlue(props: ThreeElements['group']) {
+export function IMacBlueModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
     '/models/imac_blue-transformed.glb',
   ) as unknown as GLTFResult;

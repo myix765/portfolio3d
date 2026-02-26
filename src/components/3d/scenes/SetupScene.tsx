@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { Desk } from '../models/Desk';
-import { IMacBlue } from '../models/IMacBlue';
-import { AppleKeyboard } from '../models/AppleKeyboard';
-import { AppleMouse } from '../models/AppleMouse';
-import { OfficeChair } from '../models/OfficeChair';
+import { DeskModel } from '../models/DeskModel';
+import { IMacBlueModel } from '../models/IMacBlueModel';
+import { AppleKeyboardModel } from '../models/AppleKeyboardModel';
+import { AppleMouseModel } from '../models/AppleMouseModel';
+import { OfficeChairModel } from '../models/OfficeChairModel';
 import { DirectionalLight, DirectionalLightHelper } from 'three';
 import { useHelper } from '@react-three/drei';
 
@@ -13,11 +13,11 @@ const SetupScene = () => {
 
   return (
     <>
-      <Desk position={[0, 0, 2.5]} />
-      <AppleKeyboard position={[0, 0, 2.5]} />
-      <IMacBlue position={[0, 0, 2.5]} />
-      <AppleMouse position={[0, 0, 2.5]} />
-      <OfficeChair position={[0, 0, 2.5]} />
+      <DeskModel position={[0, 0, 2.5]} />
+      <AppleKeyboardModel position={[0, 0, 2.5]} />
+      <IMacBlueModel position={[0, 0, 2.5]} />
+      <AppleMouseModel position={[0, 0, 2.5]} />
+      <OfficeChairModel position={[0, 0, 2.5]} />
       <directionalLight ref={dirLight} position={[0, 6, 3]} intensity={1} />
     </>
   );

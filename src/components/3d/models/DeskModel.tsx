@@ -8,24 +8,22 @@ import type { GLTF } from 'three-stdlib';
 import type { ThreeElements } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
-  nodes: { Vert001: THREE.Mesh };
-  materials: { ['IMac-Body']: THREE.MeshStandardMaterial };
+  nodes: { Adjustable_Desk: THREE.Mesh };
+  materials: { ['Material.001']: THREE.MeshStandardMaterial };
 };
 
-export function AppleMouse(props: ThreeElements['group']) {
+export function DeskModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/models/apple_mouse.glb',
+    '/models/desk_textured-transformed.glb',
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={nodes.Vert001.geometry}
-        material={materials['IMac-Body']}
-        position={[0.235, 0.726, 0.159]}
-        rotation={[Math.PI, -0.105, Math.PI]}
+        geometry={nodes.Adjustable_Desk.geometry}
+        material={materials['Material.001']}
       />
     </group>
   );
 }
 
-useGLTF.preload('/models/apple_mouse.glb');
+useGLTF.preload('/models/desk_textured-transformed.glb');
