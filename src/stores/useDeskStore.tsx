@@ -1,13 +1,19 @@
 import { create } from 'zustand';
 
+export type FocusTargets = 'monitor';
+
 interface DeskStore {
-  cameraState: 'free' | 'focused';
-  setCameraState: (value: DeskStore['cameraState']) => void;
+  cameraMode: 'free' | 'focus';
+  focusTarget: FocusTargets | null;
+  setCameraMode: (value: DeskStore['cameraMode']) => void;
+  setFocusTarget: (id: FocusTargets | null) => void;
 }
 
 const useDeskStore = create<DeskStore>(set => ({
-  cameraState: 'free',
-  setCameraState: value => set({ cameraState: value }),
+  cameraMode: 'free',
+  focusTarget: null,
+  setCameraMode: value => set({ cameraMode: value }),
+  setFocusTarget: id => set({ focusTarget: id }),
 }));
 
 export default useDeskStore;
