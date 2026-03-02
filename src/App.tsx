@@ -1,9 +1,9 @@
 import { Canvas } from '@react-three/fiber';
-import Setup from './components/3d/scenes/SetupScene';
+import Setup from './3d/components/scenes/SetupScene';
 import { Environment, KeyboardControls } from '@react-three/drei';
-import CameraSystem from './components/3d/camera/CameraSystem';
-import { freeLookOrigin } from './components/3d/configs/cameraConfigs';
-import { keyMap } from './configs/interactConfig';
+import CameraSystem from './3d/components/camera/CameraSystem';
+import { freeLookOrigin } from './3d/components/configs/cameraConfigs';
+import { keyMap } from './3d/configs/interactConfig';
 
 const App = () => {
   return (

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import useDeskStore, { type FocusTargets } from '../stores/useDeskStore';
-import { objectBasePosition, interactTextPosition } from '../components/3d/configs/objectConfigs';
+import { objectBasePosition, interactTextPosition } from '../components/configs/objectConfigs';
 
 const NDC_THRESHOLD = 0.25;
 const projected = new THREE.Vector3();

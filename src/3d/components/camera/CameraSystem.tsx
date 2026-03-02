@@ -1,5 +1,5 @@
 import { useFrame, useThree } from '@react-three/fiber';
-import useDeskStore from '../../../stores/useDeskStore';
+import useDeskStore from '../../stores/useDeskStore';
 import { useEffect, useRef } from 'react';
 import { createFreeLookController, updateFreeLook } from './freeLook';
 import { updateFocusLook } from './focusLook';
