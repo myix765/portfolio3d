@@ -41,11 +41,13 @@ export const useInteractSystem = (target: FocusTargets) => {
 
     // detect interact key pressed
     // prevInteract prevents multiple firings, only fire on keydown
-    const { interact } = get();
-    if (interact && !prevInteract.current) {
-      console.log('E pressed');
+    if (isLooking) {
+      const { interact } = get();
+      if (interact && !prevInteract.current) {
+        console.log('E pressed');
+      }
+      prevInteract.current = interact;
     }
-    prevInteract.current = interact;
   });
 
   return isLooking;
