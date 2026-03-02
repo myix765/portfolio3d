@@ -7,7 +7,6 @@ const ComputerScreen = () => {
   return (
     <Html
       transform
-      // occlude='blending'
       pointerEvents={cameraMode.type === 'free' ? 'none' : 'auto'}
       position={[0, 1.025, -0.17]}
       scale={0.01085}

@@ -32,7 +32,7 @@ const CameraSystem = () => {
     if (cameraMode.type === 'focus') {
       updateFocusLook(camera as THREE.PerspectiveCamera, cameraMode.target, delta * 10);
     }
-  });
+  }, -1); // add priority to prevent interfering with HTML transform
 
   return null;
 };
