@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { focusConfigs } from '../configs/cameraConfigs';
-import type { FocusTargets } from '../../../stores/useDeskStore';
+import type { FocusTargets } from '../../stores/useDeskStore';
 
 export function updateFocusLook(camera: THREE.PerspectiveCamera, targetKey: FocusTargets, smoothing: number) {
   const config = focusConfigs[targetKey];

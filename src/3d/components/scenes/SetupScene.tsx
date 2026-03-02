@@ -3,7 +3,7 @@ import { AppleKeyboardModel } from '../models/AppleKeyboardModel';
 import { AppleMouseModel } from '../models/AppleMouseModel';
 import { OfficeChairModel } from '../models/OfficeChairModel';
 import { objectBasePosition } from '../configs/objectConfigs';
-import IMacBlue from '../objects/IMacBlue';
+import IMacBlue from '../objects/computer/IMacBlue';
 
 const SetupScene = () => {
   return (

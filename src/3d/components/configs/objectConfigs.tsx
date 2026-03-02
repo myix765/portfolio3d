@@ -1,4 +1,4 @@
-import type { FocusTargets } from '../../../stores/useDeskStore';
+import type { FocusTargets } from '../../stores/useDeskStore';
 
 export const objectBasePosition: [number, number, number] = [0, 0, 2.5];
 
