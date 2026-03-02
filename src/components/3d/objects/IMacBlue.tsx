@@ -4,13 +4,13 @@ import {
 } from '../configs/objectConfigs';
 import { IMacBlueModel } from '../models/IMacBlueModel';
 import InteractText from './InteractText';
-import { useInteractSystem } from '../../../hooks/useInteractSystem';
+import { useLookAt } from '../../../hooks/useLookAt';
 import type { FocusTargets } from '../../../stores/useDeskStore';
 import { controls } from '../../../configs/interactConfig';
 
 const IMacBlue = () => {
   const focusTarget: FocusTargets = 'mac';
-  const isLooking = useInteractSystem(focusTarget);
+  const isLooking = useLookAt(focusTarget);
 
   return (
     <group position={objectBasePosition}>

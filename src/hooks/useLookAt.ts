@@ -1,4 +1,3 @@
-// hooks/useInteractSystem.ts
 import { useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -12,17 +11,20 @@ import { useKeyboardControls } from '@react-three/drei';
 const NDC_THRESHOLD = 0.25;
 const projected = new THREE.Vector3();
 
-export const useInteractSystem = (target: FocusTargets) => {
+export const useLookAt = (target: FocusTargets) => {
   const { camera } = useThree();
   const cameraMode = useDeskStore(s => s.cameraMode);
+  const setFocus = useDeskStore(s => s.setFocus);
   const [isLooking, setIsLooking] = useState(false);
   const [, get] = useKeyboardControls();
   const prevInteract = useRef(false);
 
-  const worldPosition = new THREE.Vector3(
-    objectBasePosition[0] + interactTextPosition[target][0],
-    objectBasePosition[1] + interactTextPosition[target][1],
-    objectBasePosition[2] + interactTextPosition[target][2],
+  const worldPosition = useRef(
+    new THREE.Vector3(
+      objectBasePosition[0] + interactTextPosition[target][0],
+      objectBasePosition[1] + interactTextPosition[target][1],
+      objectBasePosition[2] + interactTextPosition[target][2],
+    ),
   );
 
   useFrame(() => {
@@ -31,7 +33,7 @@ export const useInteractSystem = (target: FocusTargets) => {
       return;
     }
 
-    projected.copy(worldPosition).project(camera);
+    projected.copy(worldPosition.current).project(camera);
 
     setIsLooking(
       projected.z < 1 && // in front of camera
@@ -45,6 +47,7 @@ export const useInteractSystem = (target: FocusTargets) => {
       const { interact } = get();
       if (interact && !prevInteract.current) {
         console.log('E pressed');
+        setFocus('mac');
       }
       prevInteract.current = interact;
     }
