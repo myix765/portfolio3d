@@ -6,7 +6,6 @@ import {
   objectBasePosition,
   interactTextPosition,
 } from '../components/3d/configs/objectConfigs';
-import { useKeyboardControls } from '@react-three/drei';
 
 const NDC_THRESHOLD = 0.25;
 const projected = new THREE.Vector3();
@@ -14,10 +13,7 @@ const projected = new THREE.Vector3();
 export const useLookAt = (target: FocusTargets) => {
   const { camera } = useThree();
   const cameraMode = useDeskStore(s => s.cameraMode);
-  const setFocus = useDeskStore(s => s.setFocus);
   const [isLooking, setIsLooking] = useState(false);
-  const [, get] = useKeyboardControls();
-  const prevInteract = useRef(false);
 
   const worldPosition = useRef(
     new THREE.Vector3(
@@ -40,17 +36,6 @@ export const useLookAt = (target: FocusTargets) => {
         Math.abs(projected.x) < NDC_THRESHOLD &&
         Math.abs(projected.y) < NDC_THRESHOLD,
     );
-
-    // detect interact key pressed
-    // prevInteract prevents multiple firings, only fire on keydown
-    if (isLooking) {
-      const { interact } = get();
-      if (interact && !prevInteract.current) {
-        console.log('E pressed');
-        setFocus('mac');
-      }
-      prevInteract.current = interact;
-    }
   });
 
   return isLooking;

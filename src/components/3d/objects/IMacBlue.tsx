@@ -7,10 +7,12 @@ import InteractText from './InteractText';
 import { useLookAt } from '../../../hooks/useLookAt';
 import type { FocusTargets } from '../../../stores/useDeskStore';
 import { controls } from '../../../configs/interactConfig';
+import { useInteract } from '../../../hooks/useInteract';
 
 const IMacBlue = () => {
   const focusTarget: FocusTargets = 'mac';
   const isLooking = useLookAt(focusTarget);
+  useInteract('mac', isLooking);
 
   return (
     <group position={objectBasePosition}>
