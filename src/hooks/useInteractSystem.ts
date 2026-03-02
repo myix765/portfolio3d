@@ -26,7 +26,7 @@ export const useInteractSystem = (target: FocusTargets) => {
   );
 
   useFrame(() => {
-    if (cameraMode === 'focus') {
+    if (cameraMode.type === 'focus') {
       setIsLooking(false);
       return;
     }

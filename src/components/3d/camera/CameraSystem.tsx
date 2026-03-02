@@ -9,7 +9,6 @@ import * as THREE from 'three';
 const CameraSystem = () => {
   const { camera, gl } = useThree();
   const cameraMode = useDeskStore(s => s.cameraMode);
-  const focusTarget = useDeskStore(s => s.focusTarget);
 
   const freeLookPosition = useRef(freeLookOrigin.position.clone());
 
@@ -29,20 +28,24 @@ const CameraSystem = () => {
     return cleanup;
   }, [gl]);
 
-  const cameraBehaviors = {
-    free: (camera: THREE.PerspectiveCamera, delta: number) => {
-      camera.position.lerp(freeLookPosition.current, 0.1);
-      updateFreeLook(camera, current.current, target.current, delta * 10);
-    },
-
-    focus: (camera: THREE.PerspectiveCamera, delta: number) => {
-      if (!focusTarget) return;
-      updateFocusLook(camera, focusTarget, delta * 10);
-    },
-  };
-
   useFrame((_, delta) => {
-    cameraBehaviors[cameraMode]?.(camera as THREE.PerspectiveCamera, delta);
+    if (cameraMode.type === 'free') {
+      camera.position.lerp(freeLookPosition.current, 0.1);
+      updateFreeLook(
+        camera as THREE.PerspectiveCamera,
+        current.current,
+        target.current,
+        delta * 10,
+      );
+    }
+
+    if (cameraMode.type === 'focus') {
+      updateFocusLook(
+        camera as THREE.PerspectiveCamera,
+        cameraMode.target,
+        delta * 10,
+      );
+    }
   });
 
   return null;

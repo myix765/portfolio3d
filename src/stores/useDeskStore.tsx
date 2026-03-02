@@ -2,18 +2,18 @@ import { create } from 'zustand';
 
 export type FocusTargets = 'mac';
 
+type CameraMode = { type: 'free' } | { type: 'focus'; target: FocusTargets };
+
 interface DeskStore {
-  cameraMode: 'free' | 'focus';
-  focusTarget: FocusTargets | null;
-  setCameraMode: (value: DeskStore['cameraMode']) => void;
-  setFocusTarget: (target: FocusTargets | null) => void;
+  cameraMode: CameraMode;
+  setFree: () => void;
+  setFocus: (target: FocusTargets) => void;
 }
 
 const useDeskStore = create<DeskStore>(set => ({
-  cameraMode: 'free',
-  focusTarget: null,
-  setCameraMode: value => set({ cameraMode: value }),
-  setFocusTarget: target => set({ focusTarget: target }),
+  cameraMode: { type: 'free' },
+  setFree: () => set({ cameraMode: { type: 'free' } }),
+  setFocus: target => set({ cameraMode: { type: 'focus', target } }),
 }));
 
 export default useDeskStore;
