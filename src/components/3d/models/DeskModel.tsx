@@ -14,7 +14,7 @@ type GLTFResult = GLTF & {
 
 export function DeskModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/models/desk_textured-transformed.glb',
+    '/models/desk-textured-transformed.glb',
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -26,4 +26,4 @@ export function DeskModel(props: ThreeElements['group']) {
   );
 }
 
-useGLTF.preload('/models/desk_textured-transformed.glb');
+useGLTF.preload('/models/desk-textured-transformed.glb');

@@ -14,18 +14,16 @@ type GLTFResult = GLTF & {
 
 export function AppleMouseModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/models/apple_mouse.glb',
+    '/models/apple-mouse-transformed.glb',
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Vert001.geometry}
         material={materials['IMac-Body']}
-        position={[0.235, 0.726, 0.159]}
-        rotation={[Math.PI, -0.105, Math.PI]}
       />
     </group>
   );
 }
 
-useGLTF.preload('/models/apple_mouse.glb');
+useGLTF.preload('/models/apple-mouse-transformed.glb');
