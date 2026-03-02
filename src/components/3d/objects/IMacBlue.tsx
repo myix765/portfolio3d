@@ -1,7 +1,4 @@
-import {
-  interactTextPosition,
-  objectBasePosition,
-} from '../configs/objectConfigs';
+import { interactTextPosition, objectBasePosition } from '../configs/objectConfigs';
 import { IMacBlueModel } from '../models/IMacBlueModel';
 import InteractText from './InteractText';
 import { useLookAt } from '../../../hooks/useLookAt';
@@ -16,14 +13,9 @@ const IMacBlue = () => {
 
   return (
     <group position={objectBasePosition}>
-      <InteractText
-        position={interactTextPosition[focusTarget]}
-        visible={isLooking}
-      >
+      <InteractText position={interactTextPosition[focusTarget]} visible={isLooking}>
         Press{' '}
-        <span className='border border-black p-2 rounded-sm capitalize'>
-          {controls.interact[0].replace('Key', '')}
-        </span>{' '}
+        <span className='border border-black p-2 rounded-sm capitalize'>{controls.interact[0].replace('Key', '')}</span>{' '}
         to interact
       </InteractText>
       <IMacBlueModel />

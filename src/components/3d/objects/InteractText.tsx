@@ -12,9 +12,7 @@ const InteractText = ({
 }) => {
   return (
     <Html position={position} center pointerEvents='none'>
-      <p
-        className={`whitespace-nowrap ${visible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-      >
+      <p className={`whitespace-nowrap ${visible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
         {children}
       </p>
     </Html>

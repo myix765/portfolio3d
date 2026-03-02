@@ -17,19 +17,11 @@ type GLTFResult = GLTF & {
 };
 
 export function MechKeyboardModel(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/models/mech-keyboard-transformed.glb',
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/mech-keyboard-transformed.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Cube017.geometry}
-        material={materials['Material.002']}
-      />
-      <mesh
-        geometry={nodes.Cube017_1.geometry}
-        material={materials['Material.006']}
-      />
+      <mesh geometry={nodes.Cube017.geometry} material={materials['Material.002']} />
+      <mesh geometry={nodes.Cube017_1.geometry} material={materials['Material.006']} />
       <mesh geometry={nodes.Cube017_2.geometry} material={materials.Material} />
     </group>
   );

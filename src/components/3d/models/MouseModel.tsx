@@ -17,23 +17,12 @@ type GLTFResult = GLTF & {
 };
 
 export function MouseModel(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/models/mouse.glb',
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/mouse.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Cube010.geometry}
-        material={materials['Mouse - Shiny Grey']}
-      />
-      <mesh
-        geometry={nodes.Cube010_1.geometry}
-        material={materials['Mouse - Mat Grey']}
-      />
-      <mesh
-        geometry={nodes.Cube010_2.geometry}
-        material={materials['Mouse - Wheel Grey']}
-      />
+      <mesh geometry={nodes.Cube010.geometry} material={materials['Mouse - Shiny Grey']} />
+      <mesh geometry={nodes.Cube010_1.geometry} material={materials['Mouse - Mat Grey']} />
+      <mesh geometry={nodes.Cube010_2.geometry} material={materials['Mouse - Wheel Grey']} />
     </group>
   );
 }

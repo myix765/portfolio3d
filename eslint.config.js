@@ -19,10 +19,7 @@ export default defineConfig([
       prettierConfig,
     ],
     languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
+      parserOptions: { project: ['./tsconfig.app.json'], tsconfigRootDir: import.meta.dirname },
       globals: globals.browser,
     },
   },

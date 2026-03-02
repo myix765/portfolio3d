@@ -9,11 +9,7 @@ import type { GLTF } from 'three-stdlib';
 import { useMemo } from 'react';
 
 type GLTFResult = GLTF & {
-  nodes: {
-    Sphere007001: THREE.Mesh;
-    Sphere007001_1: THREE.Mesh;
-    Sphere007001_2: THREE.Mesh;
-  };
+  nodes: { Sphere007001: THREE.Mesh; Sphere007001_1: THREE.Mesh; Sphere007001_2: THREE.Mesh };
   materials: {
     PaletteMaterial001: THREE.MeshStandardMaterial;
     ['3']: THREE.MeshStandardMaterial;
@@ -22,9 +18,7 @@ type GLTFResult = GLTF & {
 };
 
 export function OfficeChairModel(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/models/office-chair-transformed.glb',
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/office-chair-transformed.glb') as unknown as GLTFResult;
 
   const armrestMaterial = useMemo(() => {
     const src = materials.PaletteMaterial002;
@@ -44,18 +38,9 @@ export function OfficeChairModel(props: ThreeElements['group']) {
   return (
     <group {...props} dispose={null}>
       <group position={[0, 0, 0.031]}>
-        <mesh
-          geometry={nodes.Sphere007001.geometry}
-          material={materials.PaletteMaterial001}
-        />
-        <mesh
-          geometry={nodes.Sphere007001_1.geometry}
-          material={materials['3']}
-        />
-        <mesh
-          geometry={nodes.Sphere007001_2.geometry}
-          material={armrestMaterial}
-        />
+        <mesh geometry={nodes.Sphere007001.geometry} material={materials.PaletteMaterial001} />
+        <mesh geometry={nodes.Sphere007001_1.geometry} material={materials['3']} />
+        <mesh geometry={nodes.Sphere007001_2.geometry} material={armrestMaterial} />
       </group>
     </group>
   );

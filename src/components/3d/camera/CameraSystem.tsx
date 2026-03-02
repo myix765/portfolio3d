@@ -18,12 +18,7 @@ const CameraSystem = () => {
   const current = useRef({ yaw: camera.rotation.y, pitch: camera.rotation.x });
 
   useEffect(() => {
-    const cleanup = createFreeLookController(
-      gl.domElement,
-      target,
-      Math.PI / 3,
-      Math.PI / 4,
-    );
+    const cleanup = createFreeLookController(gl.domElement, target, Math.PI / 3, Math.PI / 4);
 
     return cleanup;
   }, [gl]);
@@ -31,20 +26,11 @@ const CameraSystem = () => {
   useFrame((_, delta) => {
     if (cameraMode.type === 'free') {
       camera.position.lerp(freeLookPosition.current, 0.1);
-      updateFreeLook(
-        camera as THREE.PerspectiveCamera,
-        current.current,
-        target.current,
-        delta * 10,
-      );
+      updateFreeLook(camera as THREE.PerspectiveCamera, current.current, target.current, delta * 10);
     }
 
     if (cameraMode.type === 'focus') {
-      updateFocusLook(
-        camera as THREE.PerspectiveCamera,
-        cameraMode.target,
-        delta * 10,
-      );
+      updateFocusLook(camera as THREE.PerspectiveCamera, cameraMode.target, delta * 10);
     }
   });
 

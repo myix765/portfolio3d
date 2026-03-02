@@ -13,19 +13,11 @@ type GLTFResult = GLTF & {
 };
 
 export function AppleKeyboardModel(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/models/apple-keyboard-transformed.glb',
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/apple-keyboard-transformed.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Cube041.geometry}
-        material={materials['IMac-Body.001']}
-      />
-      <mesh
-        geometry={nodes.Cube041_1.geometry}
-        material={nodes.Cube041_1.material}
-      />
+      <mesh geometry={nodes.Cube041.geometry} material={materials['IMac-Body.001']} />
+      <mesh geometry={nodes.Cube041_1.geometry} material={nodes.Cube041_1.material} />
     </group>
   );
 }

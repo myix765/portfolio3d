@@ -13,15 +13,10 @@ type GLTFResult = GLTF & {
 };
 
 export function DeskModel(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/models/desk-textured-transformed.glb',
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/desk-textured-transformed.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Adjustable_Desk.geometry}
-        material={materials['Material.001']}
-      />
+      <mesh geometry={nodes.Adjustable_Desk.geometry} material={materials['Material.001']} />
     </group>
   );
 }

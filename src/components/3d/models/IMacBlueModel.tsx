@@ -7,21 +7,13 @@ import { useGLTF } from '@react-three/drei';
 import type { GLTF } from 'three-stdlib';
 import type { ThreeElements } from '@react-three/fiber';
 
-type GLTFResult = GLTF & {
-  nodes: { imac: THREE.Mesh };
-  materials: { PaletteMaterial001: THREE.MeshStandardMaterial };
-};
+type GLTFResult = GLTF & { nodes: { imac: THREE.Mesh }; materials: { PaletteMaterial001: THREE.MeshStandardMaterial } };
 
 export function IMacBlueModel(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/models/imac-blue-transformed.glb',
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/imac-blue-transformed.glb') as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.imac.geometry}
-        material={materials.PaletteMaterial001}
-      />
+      <mesh geometry={nodes.imac.geometry} material={materials.PaletteMaterial001} />
     </group>
   );
 }
