@@ -6,5 +6,5 @@ export const freeLookOrigin = {
 };
 
 export const focusConfigs = {
-  monitor: { position: [0, 1, 2.75], lookAt: [0, 1, 2] },
+  mac: { position: [0, 1, 2.75], lookAt: [0, 1, 2] },
 };

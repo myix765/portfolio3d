@@ -1,18 +1,19 @@
 import { Html } from '@react-three/drei';
-// import { useState } from 'react';
 
 const InteractionText = ({
   text,
   position,
+  visible,
 }: {
   text: string;
   position: [number, number, number];
+  visible: boolean;
 }) => {
-  // const [isLooking, setIsLooking] = useState(false);
-
   return (
     <Html position={position} center pointerEvents='none'>
-      <p>{text}</p>
+      <p style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.3s' }}>
+        {text}
+      </p>
     </Html>
   );
 };
