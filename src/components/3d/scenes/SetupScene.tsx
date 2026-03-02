@@ -1,24 +1,19 @@
-import { useRef } from 'react';
-import { Desk } from '../models/Desk';
-import { IMacBlue } from '../models/IMacBlue';
-import { AppleKeyboard } from '../models/AppleKeyboard';
-import { AppleMouse } from '../models/AppleMouse';
-import { OfficeChair } from '../models/OfficeChair';
-import { DirectionalLight, DirectionalLightHelper } from 'three';
-import { useHelper } from '@react-three/drei';
+import { DeskModel } from '../models/DeskModel';
+import { AppleKeyboardModel } from '../models/AppleKeyboardModel';
+import { AppleMouseModel } from '../models/AppleMouseModel';
+import { OfficeChairModel } from '../models/OfficeChairModel';
+import { objectBasePosition } from '../configs/objectConfigs';
+import IMacBlue from '../objects/IMacBlue';
 
 const SetupScene = () => {
-  const dirLight = useRef<DirectionalLight>(null!);
-  useHelper(dirLight, DirectionalLightHelper, 5, 'red');
-
   return (
     <>
-      <Desk position={[0, 0, 2.5]} />
-      <AppleKeyboard position={[0, 0, 2.5]} />
-      <IMacBlue position={[0, 0, 2.5]} />
-      <AppleMouse position={[0, 0, 2.5]} />
-      <OfficeChair position={[0, 0, 2.5]} />
-      <directionalLight ref={dirLight} position={[0, 6, 3]} intensity={1} />
+      <DeskModel position={objectBasePosition} />
+      <AppleKeyboardModel position={objectBasePosition} />
+      <IMacBlue />
+      <AppleMouseModel position={objectBasePosition} />
+      <OfficeChairModel position={objectBasePosition} />
+      <directionalLight position={[0, 6, 3]} intensity={1} />
     </>
   );
 };

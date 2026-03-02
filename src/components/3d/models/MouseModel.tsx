@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Mouse(props: ThreeElements['group']) {
+export function MouseModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
     '/models/mouse.glb',
   ) as unknown as GLTFResult;

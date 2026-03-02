@@ -8,22 +8,22 @@ import type { GLTF } from 'three-stdlib';
 import type { ThreeElements } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
-  nodes: { Mesh13: THREE.Mesh };
+  nodes: { imac: THREE.Mesh };
   materials: { PaletteMaterial001: THREE.MeshStandardMaterial };
 };
 
-export function IMacBlue(props: ThreeElements['group']) {
+export function IMacBlueModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/models/imac_blue-transformed.glb',
+    '/models/imac-blue-transformed.glb',
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={nodes.Mesh13.geometry}
+        geometry={nodes.imac.geometry}
         material={materials.PaletteMaterial001}
       />
     </group>
   );
 }
 
-useGLTF.preload('/models/imac_blue-transformed.glb');
+useGLTF.preload('/models/imac-blue-transformed.glb');

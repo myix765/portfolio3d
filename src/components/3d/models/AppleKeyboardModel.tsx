@@ -12,9 +12,9 @@ type GLTFResult = GLTF & {
   materials: { ['IMac-Body.001']: THREE.MeshStandardMaterial };
 };
 
-export function AppleKeyboard(props: ThreeElements['group']) {
+export function AppleKeyboardModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/models/apple_keyboard.glb',
+    '/models/apple-keyboard-transformed.glb',
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -30,4 +30,4 @@ export function AppleKeyboard(props: ThreeElements['group']) {
   );
 }
 
-useGLTF.preload('/models/apple_keyboard.glb');
+useGLTF.preload('/models/apple-keyboard-transformed.glb');

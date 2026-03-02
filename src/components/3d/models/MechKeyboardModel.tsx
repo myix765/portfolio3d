@@ -16,9 +16,9 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function MechKeyboard(props: ThreeElements['group']) {
+export function MechKeyboardModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF(
-    '/models/mech_keyboard-transformed.glb',
+    '/models/mech-keyboard-transformed.glb',
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -35,4 +35,4 @@ export function MechKeyboard(props: ThreeElements['group']) {
   );
 }
 
-useGLTF.preload('/models/mech_keyboard-transformed.glb');
+useGLTF.preload('/models/mech-keyboard-transformed.glb');
