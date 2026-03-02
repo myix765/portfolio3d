@@ -1,4 +1,4 @@
-// hooks/useInteractionSystem.ts
+// hooks/useInteractSystem.ts
 import { useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -11,7 +11,7 @@ import {
 const NDC_THRESHOLD = 0.25;
 const projected = new THREE.Vector3();
 
-export const useInteractionSystem = (target: FocusTargets) => {
+export const useInteractSystem = (target: FocusTargets) => {
   const { camera } = useThree();
   const cameraMode = useDeskStore(s => s.cameraMode);
   const [isLooking, setIsLooking] = useState(false);
