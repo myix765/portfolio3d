@@ -1,5 +1,4 @@
 import { Canvas } from '@react-three/fiber';
-import './App.css';
 import Setup from './components/3d/scenes/SetupScene';
 import { Environment } from '@react-three/drei';
 import CameraSystem from './components/3d/camera/CameraSystem';
