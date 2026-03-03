@@ -10,13 +10,13 @@ import EscapeText from './3d/components/objects/EscapeText';
 const App = () => {
   return (
     <KeyboardControls map={keyMap}>
-      <EscapeText />
-      <Canvas camera={freeLookOrigin}>
+      <Canvas camera={freeLookOrigin} className='z-0'>
         <Environment preset='apartment' environmentIntensity={0.6} />
         <Setup />
         <CameraSystem />
         {/* <OrbitControls enablePan={true} /> */}
       </Canvas>
+      <EscapeText />
     </KeyboardControls>
   );
 };
