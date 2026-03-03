@@ -1,6 +1,6 @@
 import { Html } from '@react-three/drei';
 import useDeskStore from '../../../stores/useDeskStore';
-import Desktop from '../../../../website/Desktop';
+import Desktop from '../../../../desktop/Desktop';
 
 const ComputerScreen = () => {
   const cameraMode = useDeskStore(s => s.cameraMode);
