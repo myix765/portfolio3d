@@ -27,7 +27,15 @@ const SetupScene = () => {
       <IMacBlue />
       <AppleMouseModel position={objectBasePosition} />
       <OfficeChairModel position={objectBasePosition} />
-      <pointLight ref={lightRef} position={[0, 2.25, 3.15]} intensity={9} />
+      <directionalLight
+        ref={lightRef}
+        castShadow
+        position={[0, 2.5, 3.15]}
+        intensity={3}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+        shadow-bias={-0.0001}
+      />
     </>
   );
 };

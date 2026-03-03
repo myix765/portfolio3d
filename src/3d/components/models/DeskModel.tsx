@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import type { GLTF } from 'three-stdlib';
 import type { ThreeElements } from '@react-three/fiber';
+import { shadowConfigs } from '../configs/shadowConfigs';
 
 type GLTFResult = GLTF & {
   nodes: { Adjustable_Desk: THREE.Mesh };
@@ -14,9 +15,16 @@ type GLTFResult = GLTF & {
 
 export function DeskModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF('/models/desk-textured-transformed.glb') as unknown as GLTFResult;
+  const shadows = shadowConfigs.desk;
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Adjustable_Desk.geometry} material={materials['Material.001']} />
+      <mesh
+        castShadow={shadows.castShadows}
+        receiveShadow={shadows.receiveShadows}
+        geometry={nodes.Adjustable_Desk.geometry}
+        material={materials['Material.001']}
+      />
     </group>
   );
 }

@@ -6,14 +6,22 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import type { GLTF } from 'three-stdlib';
 import type { ThreeElements } from '@react-three/fiber';
+import { shadowConfigs } from '../configs/shadowConfigs';
 
 type GLTFResult = GLTF & { nodes: { Vert001: THREE.Mesh }; materials: { ['IMac-Body']: THREE.MeshStandardMaterial } };
 
 export function AppleMouseModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF('/models/apple-mouse-transformed.glb') as unknown as GLTFResult;
+  const shadows = shadowConfigs.mouse;
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Vert001.geometry} material={materials['IMac-Body']} />
+      <mesh
+        castShadow={shadows.castShadows}
+        receiveShadow={shadows.receiveShadows}
+        geometry={nodes.Vert001.geometry}
+        material={materials['IMac-Body']}
+      />
     </group>
   );
 }
