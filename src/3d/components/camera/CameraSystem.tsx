@@ -24,13 +24,15 @@ const CameraSystem = () => {
   }, [gl]);
 
   useFrame((_, delta) => {
+    const safeDelta = Math.min(delta, 0.033);
+
     if (cameraMode.type === 'free') {
       camera.position.lerp(freeLookPosition.current, 0.1);
-      updateFreeLook(camera as THREE.PerspectiveCamera, current.current, target.current, delta * 10);
+      updateFreeLook(camera as THREE.PerspectiveCamera, current.current, target.current, safeDelta * 10);
     }
 
     if (cameraMode.type === 'focus') {
-      updateFocusLook(camera as THREE.PerspectiveCamera, cameraMode.target, delta * 10);
+      updateFocusLook(camera as THREE.PerspectiveCamera, cameraMode.target, safeDelta * 10);
     }
   }, -1); // add priority to prevent interfering with HTML transform
 
