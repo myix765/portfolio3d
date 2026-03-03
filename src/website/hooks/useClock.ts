@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react';
 
+// real time live clock synced to the exact millisecond
 const useClock = () => {
   const [dateArr, setDateArr] = useState<string[]>([]);
   const [time, setTime] = useState<string>('');
 
   useEffect(() => {
-    const timerId = setInterval(() => {
-      const currDateTime = new Date();
-      setDateArr(currDateTime.toDateString().split(' '));
-      setTime(currDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/^0+/, ''));
-    }, 1000);
+    let timerId: number;
+
+    const tick = () => {
+      const now = new Date();
+      setDateArr(now.toDateString().split(' '));
+      setTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/^0+/, ''));
+
+      const delay = 1000 - now.getMilliseconds();
+
+      timerId = setTimeout(tick, delay);
+    };
+
+    tick();
 
     return () => clearInterval(timerId);
   }, []);
