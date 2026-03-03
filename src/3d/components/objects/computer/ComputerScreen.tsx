@@ -10,7 +10,7 @@ const ComputerScreen = () => {
       transform
       pointerEvents={cameraMode.type === 'free' ? 'none' : 'auto'}
       position={[0, 1.025, -0.17]}
-      scale={0.01085}
+      scale={0.01086}
     >
       <Desktop />
     </Html>
