@@ -1,5 +1,6 @@
 import { Html } from '@react-three/drei';
 import useDeskStore from '../../../stores/useDeskStore';
+import Desktop from '../../../../website/Desktop';
 
 const ComputerScreen = () => {
   const cameraMode = useDeskStore(s => s.cameraMode);
@@ -9,11 +10,9 @@ const ComputerScreen = () => {
       transform
       pointerEvents={cameraMode.type === 'free' ? 'none' : 'auto'}
       position={[0, 1.025, -0.17]}
-      scale={0.01085}
+      scale={0.01086}
     >
-      <div className='w-480 h-273 bg-white'>
-        <p>computer screen</p>
-      </div>
+      <Desktop />
     </Html>
   );
 };
