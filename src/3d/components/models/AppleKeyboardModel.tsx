@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import type { GLTF } from 'three-stdlib';
 import type { ThreeElements } from '@react-three/fiber';
+import { shadowConfigs } from '../configs/shadowConfigs';
 
 type GLTFResult = GLTF & {
   nodes: { Cube041: THREE.Mesh; Cube041_1: THREE.Mesh };
@@ -14,10 +15,22 @@ type GLTFResult = GLTF & {
 
 export function AppleKeyboardModel(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF('/models/apple-keyboard-transformed.glb') as unknown as GLTFResult;
+  const shadows = shadowConfigs.keyboard;
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Cube041.geometry} material={materials['IMac-Body.001']} />
-      <mesh geometry={nodes.Cube041_1.geometry} material={nodes.Cube041_1.material} />
+      <mesh
+        castShadow={shadows.castShadows}
+        receiveShadow={shadows.receiveShadows}
+        geometry={nodes.Cube041.geometry}
+        material={materials['IMac-Body.001']}
+      />
+      <mesh
+        castShadow={shadows.castShadows}
+        receiveShadow={shadows.receiveShadows}
+        geometry={nodes.Cube041_1.geometry}
+        material={nodes.Cube041_1.material}
+      />
     </group>
   );
 }
