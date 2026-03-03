@@ -4,8 +4,22 @@ import { AppleMouseModel } from '../models/AppleMouseModel';
 import { OfficeChairModel } from '../models/OfficeChairModel';
 import { objectBasePosition } from '../configs/objectConfigs';
 import IMacBlue from '../objects/computer/IMacBlue';
+import { useRef } from 'react';
+import { PointLight, PointLightHelper } from 'three';
+import { useHelper } from '@react-three/drei';
+// import { useControls } from 'leva';
 
 const SetupScene = () => {
+  const lightRef = useRef<PointLight>(null!);
+  useHelper(lightRef, PointLightHelper, 1, 'red');
+
+  // const { intensity, x, y, z } = useControls({
+  //   intensity: { value: 1, min: 0, max: 20 },
+  //   x: { value: 1, min: 0, max: 5 },
+  //   y: { value: 1, min: 0, max: 5 },
+  //   z: { value: 1, min: 0, max: 5 },
+  // });
+
   return (
     <>
       <DeskModel position={objectBasePosition} />
@@ -13,7 +27,7 @@ const SetupScene = () => {
       <IMacBlue />
       <AppleMouseModel position={objectBasePosition} />
       <OfficeChairModel position={objectBasePosition} />
-      <directionalLight position={[0, 6, 3]} intensity={1} />
+      <pointLight ref={lightRef} position={[0, 2.25, 3.15]} intensity={9} />
     </>
   );
 };
