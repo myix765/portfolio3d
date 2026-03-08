@@ -21,6 +21,8 @@ const WindowManager = () => {
 
   const windows = useWindowStore(s => s.windows);
   const openWindow = useWindowStore(s => s.openWindow);
+  const closeWindow = useWindowStore(s => s.closeWindow);
+  const focusWindow = useWindowStore(s => s.focusWindow);
 
   // Set desktop size once the ref is available
   useEffect(() => {
@@ -51,7 +53,7 @@ const WindowManager = () => {
   }, [desktopSize, openWindow]);
 
   return (
-    <div ref={desktopRef} className='absolute left-0 right-0 bottom-27 top-9 z-10 border border-amber-500'>
+    <div ref={desktopRef} className='absolute left-0 right-0 bottom-27 top-9 z-10'>
       {desktopSize &&
         windows.map(w => {
           const config = windowConfig.find(c => c.id === w.id);
@@ -68,6 +70,9 @@ const WindowManager = () => {
               initHeight={w.height}
               bounds={desktopSize}
               desktopRef={desktopRef}
+              z={w.z}
+              onClose={() => closeWindow(w.id)}
+              onFocus={() => focusWindow(w.id)}
             >
               <AppComponent />
             </Window>
