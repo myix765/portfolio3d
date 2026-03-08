@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Window from './Window';
 import { useWindowStore } from '../stores/windowStore';
-import { windowConfig } from '../configs/windowConfig';
+import { appConfig } from '../configs/appConfig';
 
 // minimum inset from WindowManager edges
 const SPAWN_PADDING = 40;
@@ -35,7 +35,7 @@ const WindowManager = () => {
   useEffect(() => {
     if (!desktopSize) return;
 
-    windowConfig
+    appConfig
       .filter(w => w.defaultOpen)
       .forEach((config, i) => {
         const pos = getRandomPosition(desktopSize.width, desktopSize.height, config.width, config.height);
@@ -53,17 +53,17 @@ const WindowManager = () => {
   }, [desktopSize, openWindow]);
 
   return (
-    <div ref={desktopRef} className='absolute left-0 right-0 bottom-27 top-9 z-10'>
+    <div ref={desktopRef} className='absolute left-0 right-0 bottom-28.5 top-9 z-10'>
       {desktopSize &&
         windows.map(w => {
-          const config = windowConfig.find(c => c.id === w.id);
+          const config = appConfig.find(c => c.id === w.id);
           if (!config || w.minimized) return null;
           const AppComponent = config.component;
 
           return (
             <Window
               key={w.id}
-              header={config.title}
+              header={config.name}
               initX={w.x}
               initY={w.y}
               initWidth={w.width}
