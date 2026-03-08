@@ -23,6 +23,7 @@ const WindowManager = () => {
   const openWindow = useWindowStore(s => s.openWindow);
   const closeWindow = useWindowStore(s => s.closeWindow);
   const focusWindow = useWindowStore(s => s.focusWindow);
+  const setFocusedId = useWindowStore(s => s.setFocusedId);
 
   // Set desktop size once the ref is available
   useEffect(() => {
@@ -53,7 +54,13 @@ const WindowManager = () => {
   }, [desktopSize, openWindow]);
 
   return (
-    <div ref={desktopRef} className='absolute left-0 right-0 bottom-28.5 top-9 z-10'>
+    <div
+      ref={desktopRef}
+      onMouseDown={e => {
+        if (e.target === e.currentTarget) setFocusedId(null);
+      }}
+      className='absolute left-0 right-0 bottom-28.5 top-9 z-10'
+    >
       {desktopSize &&
         windows.map(w => {
           const config = appConfig.find(c => c.id === w.id);
