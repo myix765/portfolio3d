@@ -1,8 +1,9 @@
 import type { ComponentType } from 'react';
 import ProfileApp from '../apps/ProfileApp';
+import type { AppIds } from './appConfig';
 
 export interface WindowConfig {
-  id: string;
+  id: AppIds;
   title: string;
   component: ComponentType;
   width: number;
