@@ -86,7 +86,7 @@ const Window = ({
         <div className='flex-1' />
       </div>
 
-      <div className='h-full p-4 overflow-auto'>{children}</div>
+      <div className='h-full overflow-auto'>{children}</div>
     </div>
   );
 };

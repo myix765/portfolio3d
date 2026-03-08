@@ -2,7 +2,7 @@ const AppName = ({ name }: { name: string }) => {
   return (
     <div
       className='px-3 py-1 text-white bg-neutral-700/80 border border-neutral-400 outline outline-gray-900 rounded-md
-                 absolute bottom-24 left-1/2 -translate-x-1/2'
+                 absolute -top-14 left-1/2 -translate-x-1/2'
     >
       {name}
     </div>
