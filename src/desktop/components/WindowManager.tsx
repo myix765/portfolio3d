@@ -28,8 +28,17 @@ const WindowManager = () => {
   // Set desktop size once the ref is available
   useEffect(() => {
     if (!desktopRef.current) return;
-    const rect = desktopRef.current.getBoundingClientRect();
-    setDesktopSize({ width: rect.width, height: rect.height });
+    const observer = new ResizeObserver(entries => {
+      const entry = entries[0];
+      if (!entry) return;
+      const { width, height } = entry.contentRect;
+      if (width > 0 && height > 0) {
+        setDesktopSize({ width, height });
+      }
+    });
+
+    observer.observe(desktopRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // Spawn default open windows
