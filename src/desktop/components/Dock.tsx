@@ -33,7 +33,7 @@ const Dock = () => {
               <AppName name={app.name} />
             </div>
             <button>
-              <img src={app.icon} className='w-18 h-18 rounded-2xl' alt={app.name} />
+              <img src={app.icon} className='w-24 h-24 rounded-2xl' alt={app.name} />
             </button>
             <div
               className={`w-[0.3rem] h-[0.3rem] rounded-full bg-white mt-3 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
