@@ -67,6 +67,7 @@ const WindowManager = () => {
               initWidth={w.width}
               initHeight={w.height}
               bounds={desktopSize}
+              desktopRef={desktopRef}
             >
               <AppComponent />
             </Window>

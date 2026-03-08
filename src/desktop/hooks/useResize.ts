@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, useLayoutEffect } from 'react';
+import { toLocalPoint } from '../utils/localPoint';
 
 type ResizeDirection = 'n' | 'e' | 's' | 'w' | 'ne' | 'nw' | 'se' | 'sw' | null;
 
@@ -15,24 +16,43 @@ export const useResize = (
   initialX: number,
   initialY: number,
   bounds: { width: number; height: number } | null,
+  desktopRef: React.RefObject<HTMLDivElement | null>,
 ) => {
-  const [resizeState, setResizeState] = useState<ResizeState>({
+  const [resizeState, setResizeStateRaw] = useState<ResizeState>({
     width: initialWidth,
     height: initialHeight,
     top: initialY,
     left: initialX,
   });
+  const resizeStateRef = useRef<ResizeState>({
+    width: initialWidth,
+    height: initialHeight,
+    top: initialY,
+    left: initialX,
+  });
+  const setResizeState = useCallback((updater: ResizeState | ((prev: ResizeState) => ResizeState)) => {
+    setResizeStateRaw(prev => {
+      const next = typeof updater === 'function' ? updater(prev) : updater;
+      resizeStateRef.current = next;
+      return next;
+    });
+  }, []);
 
   const resizeDir = useRef<ResizeDirection>(null);
   const startMouse = useRef({ x: 0, y: 0 });
   const startSize = useRef<ResizeState>({ width: initialWidth, height: initialHeight, top: initialY, left: initialX });
+  const desktopRefRef = useRef(desktopRef);
+  useLayoutEffect(() => {
+    desktopRefRef.current = desktopRef;
+  });
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!resizeDir.current || !bounds) return;
-
-      const dx = e.clientX - startMouse.current.x;
-      const dy = e.clientY - startMouse.current.y;
+      const desktop = desktopRefRef.current?.current;
+      if (!resizeDir.current || !bounds || !desktop) return;
+      const { x, y } = toLocalPoint(desktop, e.clientX, e.clientY);
+      const dx = x - startMouse.current.x;
+      const dy = y - startMouse.current.y;
 
       let { width, height, top, left } = startSize.current;
 
@@ -53,7 +73,7 @@ export const useResize = (
 
       setResizeState({ width, height, top, left });
     },
-    [bounds],
+    [bounds, setResizeState],
   );
 
   const handleMouseUp = useCallback(() => {
@@ -69,16 +89,16 @@ export const useResize = (
     };
   }, [handleMouseMove, handleMouseUp]);
 
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent, dir: ResizeDirection) => {
-      e.stopPropagation();
-      e.preventDefault();
-      resizeDir.current = dir;
-      startMouse.current = { x: e.clientX, y: e.clientY };
-      startSize.current = { ...resizeState };
-    },
-    [resizeState],
-  );
+  const handleMouseDown = useCallback((e: React.MouseEvent, dir: ResizeDirection) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const desktop = desktopRefRef.current?.current;
+    if (!desktop) return;
+    resizeDir.current = dir;
+    const { x, y } = toLocalPoint(desktop, e.clientX, e.clientY);
+    startMouse.current = { x, y };
+    startSize.current = { ...resizeStateRef.current };
+  }, []);
 
   const handles: { dir: ResizeDirection; style: React.CSSProperties }[] = [
     { dir: 'n', style: { top: -3, left: '10%', right: '10%', height: 6, cursor: 'n-resize' } },
@@ -91,5 +111,5 @@ export const useResize = (
     { dir: 'sw', style: { left: -3, bottom: -3, width: 12, height: 12, cursor: 'sw-resize' } },
   ];
 
-  return { resizeState, setResizeState, handles, handleMouseDown };
+  return { resizeState, resizeStateRef, setResizeState, handles, handleMouseDown };
 };

@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import type { ReactNode } from 'react';
+import type { ReactNode, RefObject } from 'react';
 import { useDrag } from '../hooks/useDrag';
 import { useResize } from '../hooks/useResize';
 
@@ -11,24 +10,20 @@ interface WindowProps {
   initWidth: number;
   initHeight: number;
   bounds: { width: number; height: number };
+  desktopRef: RefObject<HTMLDivElement | null>;
 }
 
-const Window = ({ header, children, initX, initY, initWidth, initHeight, bounds }: WindowProps) => {
+const Window = ({ header, children, initX, initY, initWidth, initHeight, bounds, desktopRef }: WindowProps) => {
   const {
     resizeState,
+    resizeStateRef,
     setResizeState,
     handles,
     handleMouseDown: startResize,
-  } = useResize(initWidth, initHeight, initX, initY, bounds);
-
-  // Stable refs so drag callbacks don't go stale
-  const resizeStateRef = useRef(resizeState);
-  useEffect(() => {
-    resizeStateRef.current = resizeState;
-  }, [resizeState]);
-
+  } = useResize(initWidth, initHeight, initX, initY, bounds, desktopRef);
   const { onMouseDown: startDrag } = useDrag({
     bounds,
+    desktopRef,
     getSize: () => ({ width: resizeStateRef.current.width, height: resizeStateRef.current.height }),
     getPos: () => ({ x: resizeStateRef.current.left, y: resizeStateRef.current.top }),
     onMove: (x, y) => setResizeState(prev => ({ ...prev, left: x, top: y })),

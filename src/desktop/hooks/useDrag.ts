@@ -1,51 +1,63 @@
-import { useCallback, useRef, useEffect } from 'react';
+import { useCallback, useRef, useEffect, useLayoutEffect } from 'react';
+import { toLocalPoint } from '../utils/localPoint';
 
 interface DragProps {
   bounds: { width: number; height: number };
+  desktopRef: React.RefObject<HTMLDivElement | null>;
   getSize: () => { width: number; height: number };
   getPos: () => { x: number; y: number };
   onMove: (x: number, y: number) => void;
 }
 
-export function useDrag({ bounds, getSize, getPos, onMove }: DragProps) {
+export function useDrag({ bounds, desktopRef, getSize, getPos, onMove }: DragProps) {
   const draggingRef = useRef(false);
   const offsetRef = useRef({ x: 0, y: 0 });
+  const onMoveRef = useRef(onMove);
+  const boundsRef = useRef(bounds);
+  const getSizeRef = useRef(getSize);
+
+  useLayoutEffect(() => {
+    onMoveRef.current = onMove;
+    boundsRef.current = bounds;
+    getSizeRef.current = getSize;
+  });
 
   const onMouseDown = useCallback(
     (e: React.MouseEvent | React.TouchEvent) => {
       e.preventDefault();
+      if (!desktopRef.current) return;
       draggingRef.current = true;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+      const rawX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const rawY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const { x, y } = toLocalPoint(desktopRef.current, rawX, rawY);
       const pos = getPos();
-      offsetRef.current = { x: clientX - pos.x, y: clientY - pos.y };
+      offsetRef.current = { x: x - pos.x, y: y - pos.y };
     },
-    [getPos],
+    [desktopRef, getPos],
   );
-
-  const onMouseMove = useCallback(
-    (e: MouseEvent | TouchEvent) => {
-      if (!draggingRef.current) return;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
-      const size = getSize();
-      let newX = clientX - offsetRef.current.x;
-      let newY = clientY - offsetRef.current.y;
-
-      newX = Math.max(0, Math.min(newX, bounds.width - size.width));
-      newY = Math.max(0, Math.min(newY, bounds.height - size.height));
-
-      onMove(newX, newY);
-    },
-    [bounds, getSize, onMove],
-  );
-
-  const onMouseUp = useCallback(() => {
-    draggingRef.current = false;
-  }, []);
 
   useEffect(() => {
+    const onMouseMove = (e: MouseEvent | TouchEvent) => {
+      if (!draggingRef.current || !desktopRef.current) return;
+
+      const rawX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const rawY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const { x, y } = toLocalPoint(desktopRef.current, rawX, rawY);
+
+      const size = getSizeRef.current();
+      const b = boundsRef.current;
+
+      const newX = Math.max(0, Math.min(x - offsetRef.current.x, b.width - size.width));
+      const newY = Math.max(0, Math.min(y - offsetRef.current.y, b.height - size.height));
+
+      onMoveRef.current(newX, newY);
+    };
+
+    const onMouseUp = () => {
+      draggingRef.current = false;
+    };
+
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('touchmove', onMouseMove);
@@ -56,7 +68,7 @@ export function useDrag({ bounds, getSize, getPos, onMove }: DragProps) {
       window.removeEventListener('touchmove', onMouseMove);
       window.removeEventListener('touchend', onMouseUp);
     };
-  }, [onMouseMove, onMouseUp]);
+  }, [desktopRef]);
 
   return { onMouseDown };
 }
