@@ -1,0 +1,16 @@
+export const skillsConfig = [
+  'Git/GitHub',
+  'HTML',
+  'CSS',
+  'TailwindCSS',
+  'JavaScript/TypeScript',
+  'React',
+  'React Native',
+  'Node.js',
+  'MongoDB',
+  'PostgreSQL',
+  'APIs',
+  'Python',
+  'C',
+  'C++',
+];
