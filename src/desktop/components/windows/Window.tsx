@@ -1,6 +1,6 @@
 import type { ReactNode, RefObject } from 'react';
-import { useDrag } from '../hooks/useDrag';
-import { useResize } from '../hooks/useResize';
+import { useDrag } from '../../hooks/useDrag';
+import { useResize } from '../../hooks/useResize';
 
 interface WindowProps {
   header: string;
@@ -47,7 +47,7 @@ const Window = ({
 
   return (
     <div
-      className='absolute bg-white rounded-lg shadow-[0_36px_100px_0_rgba(0,0,0,0.4),0_0_3px_0_rgba(0,0,0,0.55)] overflow-clip'
+      className='absolute bg-white rounded-lg shadow-[0_36px_100px_0_rgba(0,0,0,0.4),0_0_3px_0_rgba(0,0,0,0.55)] overflow-hidden flex flex-col'
       style={{
         left: resizeState.left,
         top: resizeState.top,
@@ -86,7 +86,7 @@ const Window = ({
         <div className='flex-1' />
       </div>
 
-      <div className='h-full p-4 overflow-auto'>{children}</div>
+      <div className='flex-1 overflow-scroll min-h-0'>{children}</div>
     </div>
   );
 };

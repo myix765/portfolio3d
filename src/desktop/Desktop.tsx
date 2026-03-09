@@ -1,6 +1,6 @@
 import Dock from './components/Dock';
 import MenuBar from './components/MenuBar';
-import WindowManager from './components/WindowManager';
+import WindowManager from './components/windows/WindowManager';
 
 const Desktop = () => {
   return (

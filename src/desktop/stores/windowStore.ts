@@ -13,21 +13,30 @@ interface WindowState {
 interface WindowStore {
   windows: WindowState[];
   topZ: number;
+  focusedId: string | null;
 
   openWindow: (w: WindowState) => void;
   closeWindow: (id: string) => void;
   focusWindow: (id: string) => void;
+  setFocusedId: (id: string | null) => void;
 }
 
 export const useWindowStore = create<WindowStore>(set => ({
   windows: [],
   topZ: 1,
+  focusedId: null,
 
-  openWindow: window => set(state => ({ windows: [...state.windows, window], topZ: Math.max(state.topZ, window.z) })),
-  closeWindow: id => set(state => ({ windows: state.windows.filter(w => w.id !== id) })),
+  openWindow: window =>
+    set(state => ({ windows: [...state.windows, window], topZ: Math.max(state.topZ, window.z), focusedId: window.id })),
+  closeWindow: id =>
+    set(state => ({
+      windows: state.windows.filter(w => w.id !== id),
+      focusedId: state.focusedId === id ? null : state.focusedId,
+    })),
   focusWindow: id =>
     set(state => {
       const nextZ = state.topZ + 1;
-      return { topZ: nextZ, windows: state.windows.map(w => (w.id === id ? { ...w, z: nextZ } : w)) };
+      return { topZ: nextZ, focusedId: id, windows: state.windows.map(w => (w.id === id ? { ...w, z: nextZ } : w)) };
     }),
+  setFocusedId: id => set({ focusedId: id }),
 }));
