@@ -1,6 +1,7 @@
 import ProfileIconNoHi from '../assets/apps/profile_icon_no_hi.png';
 import AppSection from '../components/windows/AppSection';
 import { experienceConfig, skillsConfig, socialsConfig } from '../configs/profileConfig';
+import { EnvelopeIcon } from '@phosphor-icons/react';
 
 const ProfileApp = () => {
   return (
@@ -49,9 +50,15 @@ const ProfileApp = () => {
         </AppSection>
         <AppSection colSpan={3} isCol>
           <h2>Socials</h2>
+          <div className='flex items-center gap-x-3'>
+            <EnvelopeIcon className='w-8 h-8' />
+            <p>
+              Email: <a href='mailto:megan.yi765@proton.me'>megan.yi765@proton.me</a>
+            </p>
+          </div>
           <div className='flex gap-6 flex-wrap'>
             {socialsConfig.map(social => (
-              <a href={social.link} target='_blank' rel='noopener noreferrer'>
+              <a href={social.href} target='_blank' rel='noopener noreferrer'>
                 <social.icon className='w-10 h-10' />
               </a>
             ))}

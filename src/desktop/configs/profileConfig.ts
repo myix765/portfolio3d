@@ -1,6 +1,6 @@
 import GitHubIcon from '../assets/GitHub_Icon.svg?react';
 import LinkedInIcon from '../assets/Linkedin_Icon.svg?react';
-// import { Mail } from 'lucide-react';
+import { ReadCvLogoIcon } from '@phosphor-icons/react';
 
 export const experienceConfig = [
   {
@@ -42,7 +42,7 @@ export const skillsConfig = [
 ];
 
 export const socialsConfig = [
-  { link: 'https://github.com/myix765/', icon: GitHubIcon },
-  { link: 'https://www.linkedin.com/in/megan-yi-996742260/', icon: LinkedInIcon },
-  // { link: '', icon: Mail }
+  { href: 'https://github.com/myix765/', icon: GitHubIcon },
+  { href: 'https://www.linkedin.com/in/megan-yi-996742260/', icon: LinkedInIcon },
+  { href: '/Megan_Yi_Resume_Portfolio_ver.pdf', icon: ReadCvLogoIcon },
 ];
