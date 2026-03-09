@@ -1,5 +1,6 @@
 import ProfileIconNoHi from '../assets/apps/profile_icon_no_hi.png';
-import AppSection from '../components/windows/AppSection';
+import AppSection from '../components/AppSection';
+import SkillsSection from '../components/SkillsSection';
 import { experienceConfig, skillsConfig, socialsConfig } from '../configs/profileConfig';
 import { EnvelopeIcon } from '@phosphor-icons/react';
 
@@ -42,11 +43,7 @@ const ProfileApp = () => {
         </AppSection>
         <AppSection colSpan={3} isCol>
           <h2>Skills</h2>
-          <div className='flex gap-3 flex-wrap'>
-            {skillsConfig.map(skill => (
-              <div className='rounded-full border border-slate-600 py-1 px-2 whitespace-nowrap'>{skill}</div>
-            ))}
-          </div>
+          <SkillsSection skills={skillsConfig} />
         </AppSection>
         <AppSection colSpan={3} isCol>
           <h2>Socials</h2>

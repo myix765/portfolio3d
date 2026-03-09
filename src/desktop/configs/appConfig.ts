@@ -13,6 +13,7 @@ export interface AppConfig {
   name: string;
   icon: string;
   component: ComponentType;
+  techStack?: string[];
   width: number;
   height: number;
   defaultOpen?: boolean;
@@ -42,7 +43,8 @@ export const appConfig: AppConfig[] = [
     name: 'Do Not Disturb The Cat',
     icon: dndCatIcon,
     component: DndCatApp,
-    width: 760,
+    techStack: ['Swift'],
+    width: 960,
     height: 720,
     defaultOpen: false,
   },
