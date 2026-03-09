@@ -5,7 +5,7 @@ import { experienceConfig, skillsConfig, socialsConfig } from '../configs/profil
 const ProfileApp = () => {
   return (
     <div className='w-full h-full @container'>
-      <div className='h-full grid grid-cols-1 @3xl:grid-cols-5 grid-rows-[repeat(3,minmax(min-content,auto))] gap-[0.8vw] p-4'>
+      <div className='h-full grid grid-cols-1 auto-rows-min @3xl:grid-cols-5 @3xl:grid-rows-[repeat(3,minmax(min-content,auto))] gap-[0.8vw] p-4'>
         <AppSection colSpan={3}>
           <img src={ProfileIconNoHi} alt='' className='rounded-xl max-h-[36vh] max-w-[36vh]' />
           <div className='flex flex-col gap-y-4'>
@@ -57,6 +57,7 @@ const ProfileApp = () => {
             ))}
           </div>
         </AppSection>
+        <div className='h-1' /> {/* allow bottom padding to show with scroll */}
       </div>
     </div>
   );

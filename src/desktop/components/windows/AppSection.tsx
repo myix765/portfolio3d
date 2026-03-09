@@ -14,7 +14,7 @@ const AppSection = ({ children, colSpan = 1, rowSpan = 1, isCol = false }: AppSe
   return (
     <section
       className={`border border-neutral-300 rounded-xl p-[1vw] min-h-0
-              flex ${isCol ? 'flex-col' : 'flex-row'} @max-3xl:flex-col gap-[1vw]
+              flex ${isCol ? 'flex-col' : 'flex-row'} @max-3xl:flex-col gap-4
               ${colClass} ${rowClass}
               @max-3xl:col-span-full @max-3xl:row-span-1`}
     >
