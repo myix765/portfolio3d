@@ -82,7 +82,7 @@ const Window = ({
           <button className='bg-yellow-500 border border-yellow-600 w-3.5 h-3.5 rounded-full' />
           <button className='bg-green-500 border border-green-700 w-3.5 h-3.5 rounded-full' />
         </div>
-        <span className='truncate'>{header}</span>
+        <span className='truncate font-courier-prime text-xl mt-1 h-full flex items-center-safe'>{header}</span>
         <div className='flex-1' />
       </div>
 

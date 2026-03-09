@@ -11,11 +11,11 @@ const MenuBar = () => {
     <div
       className='w-full absolute top-0 z-50 px-3 py-1.5
       bg-[rgba(180,180,180,0.6)] shadow-glass backdrop-blur-md
-      flex flex-nowrap justify-between'
+      flex flex-nowrap justify-between font-courier-prime text-xl'
     >
-      <p>{focusedApp ? focusedApp.name : "Megan's Portfolio"}</p>
+      <span className='mt-1'>{focusedApp ? focusedApp.name : "Megan's Portfolio"}</span>
       {dateArr && time && (
-        <span>
+        <span className='mt-1'>
           {dateArr[0]} {dateArr[1]} {dateArr[2].replace(/^0+/, '')} {time}
         </span>
       )}

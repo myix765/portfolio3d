@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@200..800&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
 @import 'tailwindcss';
+
+@theme {
+    --font-courier-prime: 'Courier Prime', monospace;
+    --font-manrope: 'Manrope', sans-serif;
+    --font-schibsted: 'Schibsted Grotesk', sans-serif;
+}
 
 html,
 body,
@@ -9,18 +16,22 @@ body,
 @layer base {
   /* for app headers */
   h1 {
-    @apply text-3xl font-semibold;
+    @apply text-3xl font-bold font-courier-prime;
   }
 
   h2 {
-    @apply text-2xl font-semibold;
+    @apply text-2xl font-bold font-courier-prime;
   }
 
   h3 {
-    @apply text-xl font-semibold;
+    @apply text-xl font-bold font-courier-prime;
   }
 
   p {
-    @apply text-lg;
+    @apply text-lg font-schibsted;
+  }
+
+  span {
+    @apply text-inherit;
   }
 }
