@@ -4,7 +4,7 @@ import { useWindowStore } from '../../stores/windowStore';
 import { appConfig } from '../../configs/appConfig';
 
 // minimum inset from WindowManager edges
-const SPAWN_PADDING = 40;
+const SPAWN_PADDING = 20;
 
 const getRandomPosition = (desktopW: number, desktopH: number, width: number, height: number) => {
   const minX = SPAWN_PADDING;
@@ -68,7 +68,7 @@ const WindowManager = () => {
       onMouseDown={e => {
         if (e.target === e.currentTarget) setFocusedId(null);
       }}
-      className='absolute left-0 right-0 bottom-34.5 top-10 z-10'
+      className='absolute left-0 right-0 bottom-32.5 top-11 z-10'
     >
       {desktopSize &&
         windows.map(w => {
