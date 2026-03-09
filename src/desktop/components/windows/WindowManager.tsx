@@ -68,7 +68,7 @@ const WindowManager = () => {
       onMouseDown={e => {
         if (e.target === e.currentTarget) setFocusedId(null);
       }}
-      className='absolute left-0 right-0 bottom-34.5 top-9 z-10'
+      className='absolute left-0 right-0 bottom-34.5 top-10 z-10'
     >
       {desktopSize &&
         windows.map(w => {
