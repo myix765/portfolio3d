@@ -1,3 +1,7 @@
+import GitHubIcon from '../assets/GitHub_Icon.svg?react';
+import LinkedInIcon from '../assets/Linkedin_Icon.svg?react';
+// import { Mail } from 'lucide-react';
+
 export const experienceConfig = [
   {
     title: 'Software Engineer II Intern',
@@ -35,4 +39,10 @@ export const skillsConfig = [
   'Python',
   'C',
   'C++',
+];
+
+export const socialsConfig = [
+  { link: 'https://github.com/myix765/', icon: GitHubIcon },
+  { link: 'https://www.linkedin.com/in/megan-yi-996742260/', icon: LinkedInIcon },
+  // { link: '', icon: Mail }
 ];

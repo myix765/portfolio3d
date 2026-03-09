@@ -1,11 +1,11 @@
 import ProfileIconNoHi from '../assets/apps/profile-icon-no-hi.png';
 import AppSection from '../components/windows/AppSection';
-import { experienceConfig, skillsConfig } from '../configs/profileConfig';
+import { experienceConfig, skillsConfig, socialsConfig } from '../configs/profileConfig';
 
 const ProfileApp = () => {
   return (
     <div className='w-full h-full @container'>
-      <div className='h-full grid grid-cols-1 @3xl:grid-cols-5 grid-rows-[repeat(3,minmax(min-content,1fr))] gap-[0.8vw] p-4'>
+      <div className='h-full grid grid-cols-1 @3xl:grid-cols-5 grid-rows-[repeat(3,minmax(min-content,auto))] gap-[0.8vw] p-4'>
         <AppSection colSpan={3}>
           <img src={ProfileIconNoHi} alt='' className='rounded-xl max-h-[36vh] max-w-[36vh]' />
           <div className='flex flex-col gap-y-4'>
@@ -47,11 +47,15 @@ const ProfileApp = () => {
             ))}
           </div>
         </AppSection>
-        <AppSection>
+        <AppSection colSpan={3} isCol>
           <h2>Socials</h2>
-        </AppSection>
-        <AppSection colSpan={2}>
-          <h2>GitHub</h2>
+          <div className='flex gap-6 flex-wrap'>
+            {socialsConfig.map(social => (
+              <a href={social.link} target='_blank' rel='noopener noreferrer'>
+                <social.icon className='w-10 h-10' />
+              </a>
+            ))}
+          </div>
         </AppSection>
       </div>
     </div>
