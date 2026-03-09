@@ -1,6 +1,7 @@
 import { appConfig } from '../configs/appConfig';
 import useClock from '../hooks/useClock';
 import { useWindowStore } from '../stores/windowStore';
+import MLogo from '../assets/m_logo.svg?react';
 
 const MenuBar = () => {
   const { dateArr, time } = useClock();
@@ -13,7 +14,10 @@ const MenuBar = () => {
       bg-[rgba(180,180,180,0.6)] shadow-glass backdrop-blur-md
       flex flex-nowrap justify-between font-courier-prime text-xl'
     >
-      <span className='mt-1'>{focusedApp ? focusedApp.name : "Megan's Portfolio"}</span>
+      <div className='flex items-center-safe gap-x-4'>
+        <MLogo className='w-6 h-6' />
+        <span className='mt-1'>{focusedApp ? focusedApp.name : "Megan's Portfolio"}</span>
+      </div>
       {dateArr && time && (
         <span className='mt-1'>
           {dateArr[0]} {dateArr[1]} {dateArr[2].replace(/^0+/, '')} {time}
