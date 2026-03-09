@@ -1,6 +1,6 @@
 import ProfileIconNoHi from '../assets/apps/profile-icon-no-hi.png';
 import AppSection from '../components/windows/AppSection';
-import { skillsConfig } from '../configs/profileConfig';
+import { experienceConfig, skillsConfig } from '../configs/profileConfig';
 
 const ProfileApp = () => {
   return (
@@ -26,14 +26,24 @@ const ProfileApp = () => {
             </div>
           </div>
         </AppSection>
-        <AppSection colSpan={2} rowSpan={3}>
+        <AppSection colSpan={2} rowSpan={3} isCol>
           <h2>Experience</h2>
+          <div className='flex flex-col gap-4'>
+            {experienceConfig.map(exp => (
+              <div>
+                <p className='font-semibold'>{exp.title}</p>
+                <p>{exp.company}</p>
+                <p>{exp.location}</p>
+                <p>{exp.period}</p>
+              </div>
+            ))}
+          </div>
         </AppSection>
         <AppSection colSpan={3} isCol>
           <h2>Skills</h2>
           <div className='flex gap-3 flex-wrap'>
             {skillsConfig.map(skill => (
-              <div className="rounded-full border border-slate-600 py-1 px-2 whitespace-nowrap">{skill}</div>
+              <div className='rounded-full border border-slate-600 py-1 px-2 whitespace-nowrap'>{skill}</div>
             ))}
           </div>
         </AppSection>
