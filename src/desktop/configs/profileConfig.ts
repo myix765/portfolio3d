@@ -1,6 +1,6 @@
 import GitHubIcon from '../assets/GitHub_Icon.svg?react';
 import LinkedInIcon from '../assets/Linkedin_Icon.svg?react';
-import { ReadCvLogoIcon } from '@phosphor-icons/react';
+// import { ReadCvLogoIcon } from '@phosphor-icons/react';
 
 export const experienceConfig = [
   {
@@ -44,5 +44,5 @@ export const skillsConfig = [
 export const socialsConfig = [
   { href: 'https://github.com/myix765/', icon: GitHubIcon },
   { href: 'https://www.linkedin.com/in/megan-yi-996742260/', icon: LinkedInIcon },
-  { href: '/Megan_Yi_Resume_Portfolio_ver.pdf', icon: ReadCvLogoIcon },
+  // { href: '/Megan_Yi_Resume_Portfolio_ver.pdf', icon: ReadCvLogoIcon },
 ];
