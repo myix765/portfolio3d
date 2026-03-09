@@ -1,10 +1,12 @@
 import type { ComponentType } from 'react';
 import profileIcon from '../assets/apps/profile_icon.png';
-// import portfolioIcon from '../assets/apps/portfolio_icon.png';
 import ProfileApp from '../apps/ProfileApp';
+// import portfolioIcon from '../assets/apps/portfolio_icon.png';
 // import PortfolioApp from '../apps/PortfolioApp';
+import dndCatIcon from '../assets/apps/dndcat_app_icon.png';
+import DndCatApp from '../apps/DndCatApp';
 
-export type AppIds = 'profile' | 'portfolio';
+export type AppIds = 'profile' | 'portfolio' | 'dndcat';
 
 export interface AppConfig {
   id: AppIds;
@@ -35,4 +37,13 @@ export const appConfig: AppConfig[] = [
   //   height: 720,
   //   defaultOpen: false,
   // },
+  {
+    id: 'dndcat',
+    name: 'Do Not Disturb The Cat',
+    icon: dndCatIcon,
+    component: DndCatApp,
+    width: 760,
+    height: 720,
+    defaultOpen: false,
+  },
 ];
