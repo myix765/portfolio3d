@@ -5,3 +5,22 @@ body,
 #root {
   height: 100%;
 }
+
+@layer base {
+  /* for app headers */
+  h1 {
+    @apply text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  p {
+    @apply text-lg;
+  }
+}

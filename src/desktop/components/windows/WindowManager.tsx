@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Window from './Window';
-import { useWindowStore } from '../stores/windowStore';
-import { appConfig } from '../configs/appConfig';
+import { useWindowStore } from '../../stores/windowStore';
+import { appConfig } from '../../configs/appConfig';
 
 // minimum inset from WindowManager edges
 const SPAWN_PADDING = 40;
