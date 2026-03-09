@@ -1,4 +1,4 @@
-import ProfileIconNoHi from '../assets/apps/profile-icon-no-hi.png';
+import ProfileIconNoHi from '../assets/apps/profile_icon_no_hi.png';
 import AppSection from '../components/windows/AppSection';
 import { experienceConfig, skillsConfig, socialsConfig } from '../configs/profileConfig';
 
