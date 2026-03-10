@@ -26,7 +26,7 @@ export const appConfig: AppConfig[] = [
     icon: profileIcon,
     component: ProfileApp,
     width: 1080,
-    height: 720,
+    height: 840,
     defaultOpen: true,
   },
   // {
@@ -44,8 +44,8 @@ export const appConfig: AppConfig[] = [
     icon: dndCatIcon,
     component: DndCatApp,
     techStack: ['Swift'],
-    width: 960,
-    height: 720,
+    width: 1000,
+    height: 600,
     defaultOpen: false,
   },
 ];
