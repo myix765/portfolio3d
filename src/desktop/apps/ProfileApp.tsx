@@ -7,8 +7,8 @@ import { EnvelopeIcon } from '@phosphor-icons/react';
 const ProfileApp = () => {
   return (
     <div className='w-full h-full @container'>
-      <div className='h-full grid grid-cols-1 auto-rows-min @3xl:grid-cols-5 @3xl:grid-rows-[repeat(3,minmax(min-content,auto))] gap-[0.8vw] p-4'>
-        <AppSection colSpan={3}>
+      <div className='h-full grid grid-cols-1 auto-rows-min @3xl:grid-cols-7 @3xl:grid-rows-[repeat(3,minmax(min-content,auto))] gap-[0.8vw] p-4'>
+        <AppSection colSpan={5}>
           <img src={ProfileIconNoHi} alt='' className='rounded-xl max-h-[36vh] max-w-[36vh]' />
           <div className='flex flex-col gap-y-4'>
             <div>
@@ -41,11 +41,11 @@ const ProfileApp = () => {
             ))}
           </div>
         </AppSection>
-        <AppSection colSpan={3} isCol>
+        <AppSection colSpan={5} isCol>
           <h2>Skills</h2>
           <SkillsSection skills={skillsConfig} />
         </AppSection>
-        <AppSection colSpan={3} isCol>
+        <AppSection colSpan={5} isCol>
           <h2>Socials</h2>
           <div className='flex items-center gap-x-3'>
             <EnvelopeIcon className='w-8 h-8' />

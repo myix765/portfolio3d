@@ -26,7 +26,7 @@ export const appConfig: AppConfig[] = [
     icon: profileIcon,
     component: ProfileApp,
     width: 1080,
-    height: 840,
+    height: 750,
     defaultOpen: true,
   },
   // {
