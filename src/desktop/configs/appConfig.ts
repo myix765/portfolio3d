@@ -27,7 +27,7 @@ export const appConfig: AppConfig[] = [
     component: ProfileApp,
     width: 1080,
     height: 750,
-    defaultOpen: false,
+    defaultOpen: true,
   },
   // {
   //   id: 'portfolio',
@@ -56,6 +56,6 @@ export const appConfig: AppConfig[] = [
     techStack: ['React', 'Next.js', 'TypeScript', 'TailwindCSS'],
     width: 750,
     height: 880,
-    defaultOpen: true,
+    defaultOpen: false,
   },
 ];
