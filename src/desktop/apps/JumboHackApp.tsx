@@ -9,6 +9,7 @@ const JumboHackApp = () => {
     <ProjectWindow
       project={jumboHackConfig?.name ?? ''}
       demoSrc={JumboHackDemo}
+      link='https://jumbohack.org/'
       techStack={jumboHackConfig?.techStack ?? []}
       isVert
     >
