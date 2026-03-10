@@ -27,7 +27,10 @@ export const useWindowStore = create<WindowStore>(set => ({
   focusedId: null,
 
   openWindow: window =>
-    set(state => ({ windows: [...state.windows, window], topZ: Math.max(state.topZ, window.z), focusedId: window.id })),
+    set(state => {
+      const nextZ = state.topZ + 1;
+      return { windows: [...state.windows, { ...window, z: nextZ }], topZ: nextZ, focusedId: window.id };
+    }),
   closeWindow: id =>
     set(state => ({
       windows: state.windows.filter(w => w.id !== id),
