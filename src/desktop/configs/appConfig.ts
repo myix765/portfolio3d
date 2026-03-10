@@ -1,12 +1,12 @@
 import type { ComponentType } from 'react';
-import profileIcon from '../assets/apps/profile_icon.png';
+import { profileIcon, dndCatIcon, jumboHackIcon } from './appIcons';
 import ProfileApp from '../apps/ProfileApp';
 // import portfolioIcon from '../assets/apps/portfolio_icon.png';
 // import PortfolioApp from '../apps/PortfolioApp';
-import dndCatIcon from '../assets/apps/dndcat_app_icon.png';
 import DndCatApp from '../apps/DndCatApp';
+import JumboHackApp from '../apps/JumboHackApp';
 
-export type AppIds = 'profile' | 'portfolio' | 'dndcat';
+export type AppIds = 'profile' | 'portfolio' | 'dndcat' | 'jumbohack';
 
 export interface AppConfig {
   id: AppIds;
@@ -46,6 +46,16 @@ export const appConfig: AppConfig[] = [
     techStack: ['Swift'],
     width: 1000,
     height: 600,
+    defaultOpen: false,
+  },
+  {
+    id: 'jumbohack',
+    name: 'JumboHack 2026',
+    icon: jumboHackIcon,
+    component: JumboHackApp,
+    techStack: ['React', 'Next.js', 'TypeScript', 'TailwindCSS'],
+    width: 750,
+    height: 880,
     defaultOpen: false,
   },
 ];
