@@ -2,11 +2,13 @@ import { appConfig } from '../configs/appConfig';
 import { useWindowStore } from '../stores/windowStore';
 import type { AppConfig } from '../configs/appConfig';
 import AppName from './AppName';
+import { getRandomPosition } from '../utils/getRandomPosition';
 
 const Dock = () => {
   const windows = useWindowStore(s => s.windows);
   const openWindow = useWindowStore(s => s.openWindow);
   const focusWindow = useWindowStore(s => s.focusWindow);
+  const desktopSize = useWindowStore(s => s.desktopSize);
 
   const handleAppClick = (app: AppConfig) => {
     const alreadyOpen = windows.some(w => w.id === app.id);
@@ -14,7 +16,10 @@ const Dock = () => {
       focusWindow(app.id);
       return;
     }
-    openWindow({ id: app.id, x: 100, y: 100, width: app.width, height: app.height, z: 1, minimized: false });
+    const pos = desktopSize
+      ? getRandomPosition(desktopSize.width, desktopSize.height, app.width, app.height)
+      : { x: 100, y: 100 };
+    openWindow({ id: app.id, x: pos.x, y: pos.y, width: app.width, height: app.height, minimized: false });
   };
 
   return (

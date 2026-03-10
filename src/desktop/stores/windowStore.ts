@@ -14,17 +14,20 @@ interface WindowStore {
   windows: WindowState[];
   topZ: number;
   focusedId: string | null;
+  desktopSize: { width: number; height: number } | null;
 
-  openWindow: (w: WindowState) => void;
+  openWindow: (w: Omit<WindowState, 'z'>) => void;
   closeWindow: (id: string) => void;
   focusWindow: (id: string) => void;
   setFocusedId: (id: string | null) => void;
+  setDesktopSize: (size: { width: number; height: number }) => void;
 }
 
 export const useWindowStore = create<WindowStore>(set => ({
   windows: [],
   topZ: 1,
   focusedId: null,
+  desktopSize: null,
 
   openWindow: window =>
     set(state => {
@@ -42,4 +45,5 @@ export const useWindowStore = create<WindowStore>(set => ({
       return { topZ: nextZ, focusedId: id, windows: state.windows.map(w => (w.id === id ? { ...w, z: nextZ } : w)) };
     }),
   setFocusedId: id => set({ focusedId: id }),
+  setDesktopSize: size => set({ desktopSize: size }),
 }));

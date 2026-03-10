@@ -1,23 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Window from './Window';
 import { useWindowStore } from '../../stores/windowStore';
 import { appConfig } from '../../configs/appConfig';
-
-// minimum inset from WindowManager edges
-const SPAWN_PADDING = 20;
-
-const getRandomPosition = (desktopW: number, desktopH: number, width: number, height: number) => {
-  const minX = SPAWN_PADDING;
-  const maxX = desktopW - SPAWN_PADDING - width;
-  const minY = SPAWN_PADDING;
-  const maxY = desktopH - SPAWN_PADDING - height;
-
-  return { x: Math.random() * Math.max(maxX - minX, 0) + minX, y: Math.random() * Math.max(maxY - minY, 0) + minY };
-};
+import { getRandomPosition } from '../../utils/getRandomPosition';
 
 const WindowManager = () => {
   const desktopRef = useRef<HTMLDivElement>(null);
-  const [desktopSize, setDesktopSize] = useState<{ width: number; height: number } | null>(null);
+  const desktopSize = useWindowStore(s => s.desktopSize);
+  const setDesktopSize = useWindowStore(s => s.setDesktopSize);
 
   const windows = useWindowStore(s => s.windows);
   const openWindow = useWindowStore(s => s.openWindow);
@@ -39,7 +29,7 @@ const WindowManager = () => {
 
     observer.observe(desktopRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [setDesktopSize]);
 
   // Spawn default open windows
   useEffect(() => {
@@ -47,18 +37,10 @@ const WindowManager = () => {
 
     appConfig
       .filter(w => w.defaultOpen)
-      .forEach((config, i) => {
+      .forEach(config => {
         const pos = getRandomPosition(desktopSize.width, desktopSize.height, config.width, config.height);
 
-        openWindow({
-          id: config.id,
-          x: pos.x,
-          y: pos.y,
-          width: config.width,
-          height: config.height,
-          z: i + 1,
-          minimized: false,
-        });
+        openWindow({ id: config.id, x: pos.x, y: pos.y, width: config.width, height: config.height, minimized: false });
       });
   }, [desktopSize, openWindow]);
 
